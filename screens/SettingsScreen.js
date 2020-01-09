@@ -1,27 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-import MenuButton from '../components/MenuButton'
-
+import CommonDrawer from '../components/CommonDrawer'
+import Footer from '../components/Footer';
+import styles from '../styles/styles'
 export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MenuButton navigation={this.props.navigation} />
-        <Text style={styles.text}>Settings</Text>
+        <CommonDrawer style={styles.header} navigation={this.props.navigation} />
+        <View style={styles.content}>
+            <Text style={styles.text}>Settings</Text>
+        </View>
+        <Footer navigation={this.props.navigation} style={styles.footer} />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 30,
-  }
-});

@@ -9,19 +9,31 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'
 
 const WIDTH = Dimensions.get('window').width 
 const HEIGHT = Dimensions.get('window').height 
 
 export default class MenuDrawer extends React.Component {
-	navLink(nav, text) {
+	navLink(nav, text, mdName) {
 		return(
-			<TouchableOpacity style={{height: 50}} onPress={() => this.props.navigation.navigate(nav)}>
+			<TouchableOpacity style={styles.item} onPress={() => this.props.navigation.navigate(nav)}>
+					<Ionicons
+						name={mdName}
+						color="#888"
+						size={32}
+					/>
+					<Text style={styles.link}>{text}</Text>
+			</TouchableOpacity>
+		)
+	}
+	navLink2(nav, text) {
+		return(
+			<TouchableOpacity style={{paddingLeft: 50, height: 50}} onPress={() => this.props.navigation.navigate(nav)}>
 				<Text style={styles.link}>{text}</Text>
 			</TouchableOpacity>
 		)
 	}
-
 	render() {
 		return(
 			<View style={styles.container}>
@@ -29,21 +41,29 @@ export default class MenuDrawer extends React.Component {
 					<View style={styles.topLinks}>
 						<View style={styles.profile}>
 							<View style={styles.imgView}>
-								<Image style={styles.img} source={require('../assets/hays-profile.jpg')} />
+								<Image style={styles.img} source={require('../assets/ci-logo.jpg')} />
 							</View>
 							<View style={styles.profileText}>
-								<Text style={styles.name}>Hays Stanford</Text>
+								<Text style={styles.name}></Text>
 							</View>
 						</View>
 					</View>
 					<View style={styles.bottomLinks}>
-						{this.navLink('Home', 'Home')}
-						{this.navLink('Links', 'Links')}
-						{this.navLink('Settings', 'Settings')}
+						{this.navLink('Home', 'Home', 'md-home')}
+						{this.navLink('CurrentProjects', 'Current Projects', 'md-list-box')}
+						{this.navLink('AllProjects', 'All Active Projects', 'md-list')}
+						{this.navLink('Contact', 'Contact Us', 'md-contact')}
+						{this.navLink('Settings', 'Settings', 'md-settings')}
 					</View>
 				</ScrollView>
 				<View style={styles.footer}>
-					<Text style={styles.description}>Menu Tutorial</Text>
+				    <Ionicons
+						name="md-arrow-dropright"
+						style={{left: 15}}
+						color="#888"
+						size={32}
+					/>
+					<Text style={styles.description}>Provided by condoinvestors.ca</Text>
 					<Text style={styles.version}>v1.0</Text>
 				</View>
 			</View>
@@ -54,7 +74,7 @@ export default class MenuDrawer extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'lightgray',
+		backgroundColor: '#333',
 	},
 	scroller: {
 		flex: 1,
@@ -85,12 +105,12 @@ const styles = StyleSheet.create({
 	},
 	img: {
 		height: 70,
-		width: 70,
-		borderRadius: 50,
+		width: 107,
+		borderRadius: 20,
 	},
 	topLinks:{
 		height: 160,
-		backgroundColor: 'black',
+		backgroundColor: '#333',
 	},
 	bottomLinks: {
 		flex: 1,
@@ -98,12 +118,16 @@ const styles = StyleSheet.create({
 		paddingTop: 10,
 		paddingBottom: 450,
 	},
-	link: {
+	item: {
 		flex: 1,
-		fontSize: 20,
-		padding: 6,
+		flexDirection: 'row',
+		height: 80,
+		left: 10
+	},
+	link: {
+		// flex: 1,
+		fontSize: 24,
 		paddingLeft: 14,
-		margin: 5,
 		textAlign: 'left',
 	},
 	footer: {
@@ -115,7 +139,8 @@ const styles = StyleSheet.create({
 		borderTopColor: 'lightgray'
 	},
 	version: {
-		flex: 1, 
+		// flex: 1, 
+		width: 50,
 		textAlign: 'right',
 		marginRight: 20,
 		color: 'gray'
@@ -123,6 +148,6 @@ const styles = StyleSheet.create({
 	description: {
 		flex: 1, 
 		marginLeft: 20,
-		fontSize: 16,
+		fontSize: 14,
 	}
 })

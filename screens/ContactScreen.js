@@ -29,7 +29,7 @@ export default class ContactScreen extends React.Component {
   submitContactForm() {
     console.log(this.state)
     console.log(this.firstname)
-    const url = '???'
+    const url = '????'
     fetch(url, {
       method: 'POST', // or 'PUT'
       mode: "cors", // no-cors, cors, *same-origin
